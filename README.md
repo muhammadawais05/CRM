@@ -65,4 +65,3 @@ See `prisma/schema.prisma` for the lead, user, activity, and follow-up models.
 - `POST /api/leads/:id/followups`
 - `POST /api/import`
 - `GET /api/export`
->>>>>>> 8be2b46 (Initial commit)
