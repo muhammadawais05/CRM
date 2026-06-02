@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# CRM
-=======
 # CRM Platform
 
 Modern internal CRM platform for a software agency focused on cold outreach and lead management.
