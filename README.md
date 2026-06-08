@@ -27,25 +27,34 @@ Modern internal CRM platform for a software agency focused on cold outreach and 
    ```bash
    npm install
    ```
-3. Generate Prisma client:
+3. Set `DATABASE_URL` to a PostgreSQL database connection string.
+   - For Supabase, use the `DATABASE_URL` from your project settings.
+4. Generate Prisma client:
    ```bash
    npm run prisma:generate
    ```
-4. Run migration with your database configured or using the local SQLite fallback:
+5. Apply migrations:
    ```bash
    npm run prisma:migrate
    ```
-5. Start development server:
+6. Start development server:
    ```bash
    npm run dev
    ```
 
 ## Deployment
 
-- Use Vercel, Railway, or Fly.io
-- Set `DATABASE_URL` and `JWT_SECRET`
-- Build: `npm run build`
-- Start: `npm run start`
+- Use Vercel, Railway, Fly.io, or Supabase for a managed Postgres database.
+- Create separate environment variable sets for staging and production.
+- Set `DATABASE_URL` and `JWT_SECRET` in each environment.
+- Build:
+  ```bash
+  npm run build
+  ```
+- Start:
+  ```bash
+  npm run start
+  ```
 
 ## Database schema
 

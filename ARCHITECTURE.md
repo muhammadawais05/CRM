@@ -129,7 +129,8 @@
 
 ## Deployment steps
 
-1. Create database and set `DATABASE_URL`.
+1. Create a PostgreSQL database and set `DATABASE_URL`.
+   - Supabase is a good option for managed Postgres if you want hosted storage and easy credentials.
 2. Set `JWT_SECRET` for session token signing.
 3. Install dependencies: `npm install`
 4. Generate Prisma client: `npm run prisma:generate`
