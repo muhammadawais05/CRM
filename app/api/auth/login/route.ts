@@ -32,7 +32,7 @@ export async function POST(request: Request) {
 
     const token = createToken({
       userId: user.id,
-      role: user.role as "ADMIN" | "SALES",
+      role: user.role as "ADMIN" | "SALES" | "MANAGER" | "VIEWER",
       email: user.email,
       fullName: user.fullName,
     });

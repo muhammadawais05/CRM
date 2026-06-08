@@ -12,10 +12,18 @@ export async function POST(request: Request) {
 
   const body = await request.json();
   const { fullName, email, password, role } = body;
+  const allowedRoles = ["ADMIN", "SALES", "MANAGER", "VIEWER"] as const;
 
   if (!fullName || !email || !password) {
     return NextResponse.json(
       { error: "Missing required fields" },
+      { status: 400 },
+    );
+  }
+
+  if (!allowedRoles.includes(role)) {
+    return NextResponse.json(
+      { error: "Invalid role selected." },
       { status: 400 },
     );
   }

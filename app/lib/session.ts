@@ -3,7 +3,7 @@ import { verifyToken } from "./auth";
 
 export type SessionPayload = {
   userId: string;
-  role: "ADMIN" | "SALES";
+  role: "ADMIN" | "SALES" | "MANAGER" | "VIEWER";
   email: string;
   fullName: string;
 };

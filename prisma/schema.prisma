@@ -3,9 +3,16 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-  directUrl = env ("DIRECT_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum Role {
+  ADMIN
+  SALES
+  MANAGER
+  VIEWER
 }
 
 model User {
@@ -13,7 +20,7 @@ model User {
   fullName     String
   email        String   @unique
   passwordHash String
-  role         String   @default("SALES")
+  role         Role     @default(SALES)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
   leads        Lead[]   @relation("LeadAssignedTo")

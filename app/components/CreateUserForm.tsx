@@ -10,11 +10,14 @@ export default function CreateUserForm() {
     email: "",
     password: "",
     confirmPassword: "",
+    role: "SALES",
   });
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function handleChange(
+    event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
+  ) {
     const { name, value } = event.target;
     setForm((current) => ({ ...current, [name]: value }));
   }
@@ -42,7 +45,7 @@ export default function CreateUserForm() {
         fullName: form.fullName,
         email: form.email,
         password: form.password,
-        role: "SALES",
+        role: form.role,
       }),
     });
 
@@ -54,8 +57,14 @@ export default function CreateUserForm() {
       return;
     }
 
-    setForm({ fullName: "", email: "", password: "", confirmPassword: "" });
-    alert("Sales person created successfully");
+    setForm({
+      fullName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      role: "SALES",
+    });
+    alert("User created successfully");
     router.refresh();
   }
 
@@ -90,6 +99,20 @@ export default function CreateUserForm() {
 
       <div className="grid gap-4 md:grid-cols-2">
         <label className="block text-sm text-slate-400">
+          Role
+          <select
+            name="role"
+            value={form.role}
+            onChange={handleChange}
+            className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none"
+          >
+            <option value="ADMIN">Admin</option>
+            <option value="SALES">Sales</option>
+            <option value="MANAGER">Manager</option>
+            <option value="VIEWER">Viewer</option>
+          </select>
+        </label>
+        <label className="block text-sm text-slate-400">
           Password
           <input
             name="password"
@@ -120,7 +143,7 @@ export default function CreateUserForm() {
         disabled={isLoading}
         className="rounded-3xl bg-brand-500 px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-400 disabled:opacity-70"
       >
-        {isLoading ? "Creating..." : "Create sales person"}
+        {isLoading ? "Creating..." : "Create user"}
       </button>
     </form>
   );
