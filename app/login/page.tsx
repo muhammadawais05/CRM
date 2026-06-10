@@ -7,6 +7,7 @@ import Link from "next/link";
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -71,14 +72,23 @@ export default function LoginPage() {
           </label>
           <label className="block">
             <span className="text-sm text-slate-400">Password</span>
-            <input
-              value={password}
-              onChange={(event) => setPassword(event.target.value)}
-              name="password"
-              type="password"
-              required
-              className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-brand-500"
-            />
+            <div className="mt-2 flex items-center rounded-2xl border border-slate-800 bg-slate-900 px-4 py-3 focus-within:border-brand-500">
+              <input
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                name="password"
+                type={showPassword ? "text" : "password"}
+                required
+                className="w-full bg-transparent text-white outline-none"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((current) => !current)}
+                className="ml-3 text-sm text-slate-400 transition hover:text-white"
+              >
+                {showPassword ? "Hide" : "Show"}
+              </button>
+            </div>
           </label>
           {error ? <p className="text-sm text-rose-400">{error}</p> : null}
           <button

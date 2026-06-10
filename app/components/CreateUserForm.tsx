@@ -12,6 +12,8 @@ export default function CreateUserForm() {
     confirmPassword: "",
     role: "SALES",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
@@ -114,25 +116,43 @@ export default function CreateUserForm() {
         </label>
         <label className="block text-sm text-slate-400">
           Password
-          <input
-            name="password"
-            type="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-            className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none"
-          />
+          <div className="mt-2 flex items-center rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3">
+            <input
+              name="password"
+              type={showPassword ? "text" : "password"}
+              value={form.password}
+              onChange={handleChange}
+              required
+              className="w-full bg-transparent text-white outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowPassword((current) => !current)}
+              className="ml-3 text-sm text-slate-400 transition hover:text-white"
+            >
+              {showPassword ? "Hide" : "Show"}
+            </button>
+          </div>
         </label>
         <label className="block text-sm text-slate-400">
           Confirm Password
-          <input
-            name="confirmPassword"
-            type="password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            required
-            className="mt-2 w-full rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3 text-white outline-none"
-          />
+          <div className="mt-2 flex items-center rounded-2xl border border-slate-800 bg-slate-950 px-4 py-3">
+            <input
+              name="confirmPassword"
+              type={showConfirmPassword ? "text" : "password"}
+              value={form.confirmPassword}
+              onChange={handleChange}
+              required
+              className="w-full bg-transparent text-white outline-none"
+            />
+            <button
+              type="button"
+              onClick={() => setShowConfirmPassword((current) => !current)}
+              className="ml-3 text-sm text-slate-400 transition hover:text-white"
+            >
+              {showConfirmPassword ? "Hide" : "Show"}
+            </button>
+          </div>
         </label>
       </div>
 
